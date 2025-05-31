@@ -16,7 +16,7 @@ This is related to a c/side Interview Challenge that can be found here: https://
 
 ## Stack
 
-This was a minimalistic approach using:
+This is a minimalistic implementation using:
 
 - [Deno](https://deno.com)
 - [Hono](https://hono.dev)
