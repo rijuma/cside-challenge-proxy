@@ -1,0 +1,16 @@
+# For VPS hosting purposes
+services:
+  cside-challenge-proxy.rigoli.dev:
+    container_name: cside-challenge-proxy.rigoli.dev
+    image: cside-challenge-proxy.rigoli.dev
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      VIRTUAL_HOST: cside-challenge-proxy.rigoli.dev
+      VIRTUAL_PORT: 8000
+networks:
+  default:
+    external: true
+    name: proxy
