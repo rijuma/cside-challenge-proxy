@@ -7,7 +7,7 @@ import {
   GITHUB_TOKEN,
   FRONTEND_DOMAIN,
   PUBLIC_DIR,
-  GITHUB_GRAPHQL_URL,
+  GITHUB_API,
 } from "./const.ts"
 import { validateDomain } from "./middleware/domain.ts"
 
@@ -26,7 +26,6 @@ if (FRONTEND_DOMAIN) {
     cors({
       origin: FRONTEND_DOMAIN,
       allowMethods: ["POST", "OPTIONS"],
-      allowHeaders: ["Content-Type"],
     })
   )
 }
@@ -34,7 +33,7 @@ if (FRONTEND_DOMAIN) {
 app.post("/graphql", validateDomain(), async (c) => {
   const requestBody = await c.req.raw.text()
 
-  const response = await fetch(GITHUB_GRAPHQL_URL, {
+  const response = await fetch(`${GITHUB_API}/graphql`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${GITHUB_TOKEN}`,
