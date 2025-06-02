@@ -1,6 +1,7 @@
 import { Hono } from "hono"
 import { cors } from "hono/cors"
 import { serveStatic } from "hono/serve-static"
+import { secureHeaders } from "hono/secure-headers"
 
 import {
   GITHUB_TOKEN,
@@ -16,6 +17,8 @@ if (!GITHUB_TOKEN) {
 
 const app = new Hono()
 
+app.use(secureHeaders())
+
 // Setup CORS for the frontend route if defined
 if (FRONTEND_DOMAIN) {
   app.use(
@@ -28,7 +31,7 @@ if (FRONTEND_DOMAIN) {
   )
 }
 
-app.post("/graphql", validateDomain, async (c) => {
+app.post("/graphql", validateDomain(), async (c) => {
   const requestBody = await c.req.raw.text()
 
   const response = await fetch(GITHUB_GRAPHQL_URL, {
@@ -48,8 +51,6 @@ app.post("/graphql", validateDomain, async (c) => {
     },
   })
 })
-
-app.all("/graphql", validateDomain, (c) => c.redirect(GITHUB_GRAPHQL_URL, 301))
 
 app.use(
   "/*",
