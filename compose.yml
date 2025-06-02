@@ -1,8 +1,8 @@
 # For VPS hosting purposes
 services:
-  cside-challenge-proxy.rigoli.dev:
-    container_name: cside-challenge-proxy.rigoli.dev
-    image: cside-challenge-proxy.rigoli.dev
+  cside-challenge-proxy:
+    container_name: cside-challenge-proxy
+    image: cside-challenge-proxy
     restart: unless-stopped
     build:
       context: .
