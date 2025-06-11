@@ -73,7 +73,7 @@ describe("Hono server", () => {
 
   it("proxies /graphql POST requests to GitHub API", async () => {
     using _fetchStub = stub(globalThis, "fetch", async () =>
-      new Response(JSON.stringify({ data: "mocked" }), {
+      await new Response(JSON.stringify({ data: "mocked" }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       })
