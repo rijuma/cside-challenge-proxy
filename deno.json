@@ -1,10 +1,12 @@
 {
   "imports": {
+    "@std/testing": "jsr:@std/testing@^1.0.13",
     "hono": "jsr:@hono/hono@^4.7.10"
   },
   "tasks": {
     "dev": "deno run --allow-net --allow-env --allow-read --env-file=.env --watch src/server.ts",
-    "start": "deno run --allow-net --allow-env --allow-read --env-file=.env src/server.ts"
+    "start": "deno run --allow-net --allow-env --allow-read --env-file=.env src/server.ts",
+    "test": "deno test --allow-net --allow-env --allow-read --env-file=.env"
   },
   "compilerOptions": {
     "jsx": "precompile",

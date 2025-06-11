@@ -9,7 +9,7 @@ import {
   PUBLIC_DIR,
   GITHUB_API,
 } from "./const.ts"
-import { validateDomain } from "./middleware/domain.ts"
+import { validateDomain } from "./middleware/validate-domain.ts"
 
 if (!GITHUB_TOKEN) {
   throw new Error("Missing GitHub token. Set GITHUB_TOKEN in environment.")
